@@ -1,5 +1,3 @@
-## Amirkhusrav
-
 Computer Science student at ELTE (Budapest)  
 Building full-stack applications and simulation-based systems
 
