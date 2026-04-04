@@ -1,16 +1,33 @@
-## Hi there 👋
+## Amirkhusrav
 
-<!--
-**Shinki491/Shinki491** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Computer Science student at ELTE (Budapest)  
+Building full-stack applications and simulation-based systems
 
-Here are some ideas to get you started:
+---
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+### Current focus
+- Full-stack development (React / Node.js)
+- Backend logic and system design
+- Real-time simulation systems
+
+---
+
+### Tech stack
+
+**Languages**
+Java · TypeScript · Python
+
+**Frontend**
+React · Next.js · Tailwind CSS
+
+**Backend**
+Node.js · Express
+
+**Data & Tools**
+MongoDB · Maven · Git
+
+---
+
+### Learning
+- System design fundamentals
+- Backend scalability patterns
