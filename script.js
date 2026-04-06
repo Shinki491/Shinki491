@@ -14,3 +14,12 @@ btn.addEventListener('click', () => {
   localStorage.setItem('theme', next);
   btn.textContent = next === 'dark' ? '☀️' : '🌙';
 });
+
+// Project Card Flip Logic
+const cards = document.querySelectorAll('.project-card');
+
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    card.classList.toggle('is-flipped');
+  });
+});
