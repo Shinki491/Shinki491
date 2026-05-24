@@ -34,4 +34,4 @@ CS student at ELTE Budapest, focused on software engineering and building things
 
 ### Contact
 
-[LinkedIn](your-linkedin-url) · amirkhusrav.w@gmail.com
+[LinkedIn](https://www.linkedin.com/in/amirkhusrav-parviz-bb9223349/) · amirkhusrav.w@gmail.com
