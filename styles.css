@@ -6,6 +6,8 @@
   --card-bg: #fcfcfc;
   --border: #e5e7eb;
   --nav-blur: rgba(255, 255, 255, 0.8);
+  --tag-bg: #f1f5f9;
+  --tag-text: #334155;
 }
 
 [data-theme="dark"] {
@@ -16,6 +18,8 @@
   --card-bg: #141414;
   --border: #262626;
   --nav-blur: rgba(10, 10, 10, 0.8);
+  --tag-bg: #1e1e1e;
+  --tag-text: #94a3b8;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,7 +30,7 @@ body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   background-color: var(--bg);
   color: var(--text);
-  font-size: 15px; /* Scaled down for desktop */
+  font-size: 15px;
   line-height: 1.6;
   transition: background 0.3s ease, color 0.3s ease;
 }
@@ -43,8 +47,22 @@ body {
   display: flex; justify-content: space-between; align-items: center;
 }
 
+.logo { font-weight: 800; font-size: 1.1rem; }
+.logo span { color: var(--accent); }
+
 .nav-links { display: flex; align-items: center; gap: 1.5rem; }
-.nav-links a { text-decoration: none; color: var(--text); font-weight: 500; font-size: 0.9rem; }
+.nav-links a {
+  text-decoration: none; color: var(--text-dim); font-weight: 500;
+  font-size: 0.9rem; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+
+#theme-toggle {
+  background: none; border: 1px solid var(--border); border-radius: 8px;
+  padding: 4px 8px; cursor: pointer; font-size: 1rem;
+  transition: border-color 0.2s;
+}
+#theme-toggle:hover { border-color: var(--accent); }
 
 /* Hero */
 .hero {
@@ -54,71 +72,77 @@ body {
 }
 
 .badge {
+  display: inline-block;
   font-size: 0.7rem; font-weight: 600; padding: 4px 12px;
   border: 1px solid var(--border); border-radius: 20px; color: var(--text-dim);
+  margin-bottom: 1rem;
 }
 
-.hero h1 { font-size: 2.8rem; margin: 1rem 0; letter-spacing: -0.03em; }
-.hero p { color: var(--text-dim); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem; }
+.hero h1 { font-size: 2.8rem; margin: 0.5rem 0 1rem; letter-spacing: -0.03em; font-weight: 800; }
+.hero p { color: var(--text-dim); font-size: 1rem; max-width: 560px; margin: 0 auto 2rem; }
 
-/* Grid Systems */
-.container { max-width: 900px; margin: 0 auto; padding: 20px; }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
+.hero-cta { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
 
-.card {
-  background: var(--card-bg); padding: 1.5rem; border: 1px solid var(--border);
-  border-radius: 12px; transition: border-color 0.3s;
+.btn-primary, .btn-secondary {
+  padding: 0.55rem 1.25rem; border-radius: 8px; font-size: 0.9rem;
+  font-weight: 600; text-decoration: none; transition: all 0.2s;
+  font-family: inherit;
 }
 
-.card:hover { border-color: var(--accent); }
+.btn-primary {
+  background: var(--accent); color: white; border: 1px solid var(--accent);
+}
+.btn-primary:hover { opacity: 0.85; }
 
-/* Experience List */
-.experience-list { border-left: 1px solid var(--border); padding-left: 24px; margin-left: 10px; }
-.exp-item { margin-bottom: 2.5rem; position: relative; }
-.exp-item::before {
-  content: ""; position: absolute; left: -29.5px; top: 8px;
-  width: 10px; height: 10px; background: var(--accent); border-radius: 50%;
+.btn-secondary {
+  background: transparent; color: var(--text); border: 1px solid var(--border);
+}
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Container & Grid */
+.container { max-width: 900px; margin: 0 auto; padding: 20px 20px 60px; }
+
+section { margin-bottom: 5rem; }
+
+.label {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-dim);
+  margin-bottom: 1.5rem;
 }
 
-/* Mobile Adjustments */
-@media (max-width: 600px) {
-  body { font-size: 14px; }
-  .hero h1 { font-size: 2rem; }
-  .nav-content { padding: 0.75rem 1rem; }
-  .nav-links { gap: 1rem; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
 }
 
-/* Card Flip Container */
+/* Project Cards — Flip */
 .project-card {
   background-color: transparent;
-  perspective: 1000px; /* Gives the 3D depth effect */
+  perspective: 1000px;
   cursor: pointer;
-  height: 200px; /* Fixed height makes the flip look smoother */
+  height: 190px;
 }
 
 .card-inner {
   position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
+  width: 100%; height: 100%;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   transform-style: preserve-3d;
 }
 
-/* The class we will toggle with JS */
 .project-card.is-flipped .card-inner {
   transform: rotateY(180deg);
 }
 
 .card-front, .card-back {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
+  width: 100%; height: 100%;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   border-radius: 12px;
   border: 1px solid var(--border);
-  padding: 1.5rem;
+  padding: 1.25rem 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -128,17 +152,116 @@ body {
   background-color: var(--card-bg);
   color: var(--text);
   text-align: left;
+  transition: border-color 0.2s;
 }
+
+.project-card:hover .card-front { border-color: var(--accent); }
 
 .card-back {
   background-color: var(--accent);
   color: white;
   transform: rotateY(180deg);
-  font-size: 0.9rem;
-  font-weight: 600;
-  line-height: 1.4;
+  text-align: left;
+  gap: 1rem;
 }
 
-/* Small adjustments to keep it seamless */
-.card-header h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-.card-front p { font-size: 0.85rem; color: var(--text-dim); }
+.card-header {
+  display: flex; align-items: center;
+  justify-content: space-between; margin-bottom: 0.6rem;
+}
+
+.card-header h3 { font-size: 1rem; font-weight: 700; }
+
+.tag {
+  font-size: 0.7rem; font-weight: 600; padding: 2px 8px;
+  background: var(--tag-bg); color: var(--tag-text);
+  border-radius: 20px;
+}
+
+.card-front p { font-size: 0.82rem; color: var(--text-dim); line-height: 1.5; }
+
+/* Card Back */
+.card-back-stack {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+}
+
+.card-back-stack span {
+  font-size: 0.72rem; font-weight: 600;
+  background: rgba(255,255,255,0.2);
+  padding: 2px 9px; border-radius: 20px;
+}
+
+.card-back-link {
+  font-size: 0.85rem; font-weight: 700;
+  color: white; text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  padding-bottom: 1px;
+  align-self: flex-start;
+  transition: border-color 0.2s;
+}
+.card-back-link:hover { border-color: white; }
+
+/* Experience */
+.experience-list {
+  border-left: 1px solid var(--border);
+  padding-left: 24px; margin-left: 10px;
+}
+
+.exp-item { margin-bottom: 2.5rem; position: relative; }
+
+.exp-item::before {
+  content: ""; position: absolute; left: -29.5px; top: 8px;
+  width: 10px; height: 10px; background: var(--accent); border-radius: 50%;
+}
+
+.exp-info { margin-bottom: 0.4rem; }
+.exp-info h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.15rem; }
+.exp-info span { font-size: 0.82rem; color: var(--text-dim); display: block; }
+.exp-date { font-size: 0.75rem !important; margin-top: 0.15rem; }
+
+.exp-item p { font-size: 0.85rem; color: var(--text-dim); }
+
+/* Skills */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+.skill-category {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+}
+
+.skill-category strong {
+  display: block; font-size: 0.72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--text-dim); margin-bottom: 0.75rem;
+}
+
+.skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+.skill-tags span {
+  font-size: 0.8rem; font-weight: 500;
+  background: var(--tag-bg); color: var(--tag-text);
+  padding: 3px 10px; border-radius: 20px;
+}
+
+/* Footer */
+footer {
+  text-align: center; padding: 2rem;
+  font-size: 0.82rem; color: var(--text-dim);
+  border-top: 1px solid var(--border);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  body { font-size: 14px; }
+  .hero { padding: 120px 20px 60px; }
+  .hero h1 { font-size: 2rem; }
+  .nav-content { padding: 0.75rem 1rem; }
+  .nav-links { gap: 1rem; }
+  .project-card { height: 210px; }
+}
