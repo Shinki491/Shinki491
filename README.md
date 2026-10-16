@@ -1,6 +1,6 @@
 # Amirkhusrav Parviz
 
-Computer Science graduate from Eötvös Loránd University (ELTE), Budapest, focused on software engineering and building things that actually work.
+Computer Science graduate focused on software engineering and building things that actually work.
 
 ---
 
